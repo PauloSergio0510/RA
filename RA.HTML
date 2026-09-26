@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteirinha - Paulo Sergio</title>
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #e0e0e0; /* Fundo cinza caso abra no PC */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Container principal da carteirinha */
+        .carteirinha {
+            width: 100%;
+            height: 100dvh; /* Ocupa 100% da altura da tela */
+            max-width: 600px; /* Limite de largura para não distorcer no PC */
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* ====== PARTE SUPERIOR (AZUL) ====== */
+        .topo-azul {
+            flex: 0.45; /* Ocupa 45% do espaço */
+            background-color: #1b338a;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 5% 2%;
+        }
+
+        .foto-perfil {
+            /* Tamanho dinâmico baseado na largura da tela, com mínimo e máximo */
+            width: clamp(120px, 35vw, 180px);
+            height: clamp(120px, 35vw, 180px);
+            border-radius: 50%;
+            object-fit: cover;
+            background-color: #ccc;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .nome {
+            font-size: clamp(16px, 4.5vw, 22px);
+            text-align: center;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            width: 90%;
+        }
+
+        .info-container {
+            display: flex;
+            width: 90%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .info-coluna {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            flex: 1;
+        }
+
+        .info-label {
+            font-size: clamp(10px, 3vw, 14px);
+            color: #a4b3eb; /* Azul claro para os rótulos */
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .info-valor {
+            font-size: clamp(16px, 4.5vw, 24px);
+            font-weight: 500;
+        }
+
+        .linha-divisoria {
+            width: 1px;
+            height: 40px;
+            background-color: #ffffff;
+            opacity: 0.7;
+        }
+
+        /* ====== PARTE INFERIOR (BRANCA) ====== */
+        .base-branca {
+            flex: 0.55; /* Ocupa 55% do espaço */
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-evenly;
+            padding: 5%;
+        }
+
+        .curso {
+            font-size: clamp(18px, 5vw, 26px);
+            color: #000000;
+            text-align: center;
+            font-weight: normal;
+        }
+
+        .foto-qrcode-placeholder {
+            width: clamp(180px, 50vw, 300px);
+            height: clamp(180px, 50vw, 300px);
+            background-color: #8c8c8c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #000000;
+            font-size: clamp(30px, 8vw, 45px);
+            font-weight: 500;
+            letter-spacing: 2px;
+        }
+
+        .logo-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .logo-marca {
+            color: #0a1b64;
+            font-size: clamp(30px, 8vw, 48px);
+            font-weight: 900;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-subtexto {
+            font-size: clamp(10px, 2.5vw, 14px);
+            color: #000000;
+            margin-top: 5px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="carteirinha">
+        
+        <!-- Parte Superior Azul -->
+        <div class="topo-azul">
+            <!-- Substitua o link abaixo pela URL da foto real -->
+            <img src="https://upload.wikimedia.org/wikipedia/pt/0/01/Per_Amore.jpg" alt="Foto do Aluno" class="foto-perfil">
+            
+            <h1 class="nome">PAULO SERGIO BONFIM CRISTANELLO</h1>
+            
+            <div class="info-container">
+                <div class="info-coluna">
+                    <span class="info-label">RA</span>
+                    <span class="info-valor">527998</span>
+                </div>
+                
+                <div class="linha-divisoria"></div>
+                
+				<div class="info-coluna">
+					<span class="info-label">TURMA</span>
+					<span class="info-valor">03/<span id="ano-turma"></span></span>
+				</div>
+				
+				<div class="linha-divisoria"></div>
+				
+				<div class="info-coluna">
+					<span class="info-label">VALIDADE</span>
+					<span class="info-valor">02/<span id="ano-validade"></span></span>
+				</div>
+            </div>
+        </div>
+
+        <!-- Parte Inferior Branca -->
+        <div class="base-branca">
+            <h2 class="curso">MBA em Gestão de Projetos - EaD</h2>
+            
+            <img src="https://upload.wikimedia.org/wikipedia/pt/0/01/Per_Amore.jpg" alt="Qr Code" class="foto-qrcode-placeholder">
+            
+            <div class="logo-container">
+                <!-- Substitua por uma imagem do logo se preferir -->
+                <div class="logo-marca">UNIVEM</div>
+                <div class="logo-subtexto">Centro Universitário Eurípides de Marília</div>
+            </div>
+        </div>
+
+    </div>
+	
+	<script>
+		// Pega a data atual do sistema
+		const data = new Date();
+		
+		// Extrai o ano atual e o mês atual
+		const anoatual = data.getFullYear();
+		const mes = data.getMonth() + 1; 
+		
+		let anoinicio;
+
+		// Faz o teste condicional
+		if (mes < 3) {
+			anoinicio = anoatual - 1;
+		} else {
+			anoinicio = anoatual;
+		}
+
+		// Calcula o ano da validade (Ano Início + 1)
+		let anovalidade = anoinicio + 1;
+
+		// Mostra (print) o resultado no HTML usando textContent para não gerar quebra de linha
+		document.getElementById("ano-turma").textContent = anoinicio;
+		document.getElementById("ano-validade").textContent = anovalidade;
+	</script>
+
+</body>
+</html>
